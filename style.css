@@ -1,0 +1,275 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+
+  --hue:  195;
+
+  --base-color: hsl(var(--hue), 91%, 25%);
+  --base-color-title: hsl(240, 6%, 13%);
+  --base-color-texts: hsl(240, 5%, 7%);
+  --base-color-footer: hsl(var(--hue), 46%, 40%);
+  --base-color-main: hsl(196, 100%, 98%);
+
+}
+
+html, body, input, textarea, button {
+  font-family: "Mulish", sans-serif;
+  font-size: 1.6rem;
+}
+
+#app {
+  display: grid;
+  grid-template-rows: max-content 1fr max-content;
+  height: 100vh;
+}
+
+#app header {
+  background-color: var(--base-color);
+}
+
+.header-container {
+  display: flex;
+  width: max(37rem, 100%);
+  gap: 2.55rem;
+  padding: 1.2rem 2.8rem;
+}
+
+#app header img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+#app header .input-wrapper label {
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+}
+
+#app header .input-wrapper {
+  width: max(21.1rem, 100%);
+}
+
+#app header .input-wrapper input {
+  width: max(21.1rem, 100%);
+  padding: 1.2rem 1.6rem;
+  border-radius: .4rem;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.20);
+  color: white;
+  outline: none;
+}
+
+#app header .input-wrapper input::placeholder {
+  color: white;
+}
+
+#app main {
+  background-color: var(--base-color-main);
+  overflow-y: scroll;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3.4rem;
+}
+
+.main-article img {
+  width: 100%;
+}
+
+.rating-title {
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+  margin: 3.2rem 0;
+  padding: 0 2.4rem;
+}
+
+.rating-title h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--base-color-title);
+}
+
+.main-article button {
+  border: none;
+  width: 4rem;
+  height: 4rem;
+  background-color: var(--base-color);
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+}
+
+.main-article button img {
+  display: flex;
+  width: 1.6rem;
+  height: 1.6rem;
+  position: absolute;
+  top: 13px;
+  right: 12px;
+}
+
+.main-article p {
+  color: var(--base-color-texts);
+  padding: 0 2.4rem;
+}
+
+.related-articles {
+  padding: 0 2.4rem 4rem;
+  width: max(38.2rem, 100%);
+}
+
+.related-articles section {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}
+
+.related-article img {
+  object-fit: cover;
+  border-radius: .5rem;
+}
+
+.related-articles h2 {
+  font-size: 2.4rem;
+  margin-bottom: 3.2rem;
+  color: var(--base-color-title)
+}
+
+.related-article a {
+  display: flex;
+  width: min(83rem, 100%);
+  gap: 1.6rem;
+  align-items: center;
+  text-decoration: none;
+  color: var(--base-color-texts);
+}
+
+.related-article h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--base-color-title)
+}
+
+.related-article p {
+  font-size: 1.4rem;
+  line-height: 160%;
+}
+
+.related-article-description {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+#app footer {
+  background-color: var(--base-color-footer);
+}
+
+.footer-container {
+  color:white;
+  padding: 1.6rem;
+  text-align: center;
+  width: max(37rem, 100%);
+}
+
+/* Responsiveness */
+
+@media (min-width: 1216px) {
+  .header-container {
+    width: min(127.2rem, 100%);
+    margin: 0 auto;
+  }
+
+  .main-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    width: min(127.6rem, 100%);
+    margin: 0 auto;
+    padding: 4rem 2.8rem;
+  }
+
+  .rating-title {
+    flex-direction: row;
+    padding: 0;
+    justify-content: space-between;
+  }
+
+  .rating  {
+    display: flex;
+    gap: 1.2rem;
+  }
+
+  .main-article p {
+    padding: 0;
+  }
+
+  .related-articles {
+    width: 100%;
+    padding: 0;
+  }
+
+  .related-article a {
+    width: 100%;
+  }
+}
+
+/* Animations */
+
+header {
+  --startY: -100%;
+  animation: move .2s;
+}
+
+footer {
+  --startY: 100%;
+  animation: move .2s;
+}
+
+@keyframes move {
+  from {
+    transform: translateY(var(--startY));
+  }
+}
+
+.related-articles h2 {
+  animation: appear .4s 2s backwards;
+}
+
+.related-article {
+  --delay: 2s;
+  animation: appear .6s var(--delay) backwards;
+}
+
+.main-article img {
+  animation: appear .8s .4s backwards;
+}
+
+.rating-title {
+  animation: appear .4s .8s backwards;
+}
+
+.main-article p {
+  animation: appear .4s 1.2s backwards;
+}
+
+@keyframes appear {
+    0% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+
+    100% {
+
+    }
+}
